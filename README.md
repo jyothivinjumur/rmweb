@@ -29,6 +29,11 @@ docker run -p 4000:80 sampleapp
 ```
 Navigate to http://127.0.0.1:4000/ to see the app.
 
+To run the docker image as a deamon.
+```
+sudo docker run -p 80:80 -d sampleapp
+```
+
 ### Log into the VM
 
 Open a new terminal window and find the `CONTAINER ID` of the running docker container.
@@ -50,3 +55,7 @@ Cleanup all the dangling and intermediate containers. Note: do this once in a wh
 ```
 docker image prune
 ```
+
+### Installing Docker on a VM
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
