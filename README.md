@@ -59,3 +59,7 @@ docker image prune
 ### Installing Docker on a VM
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+### UI inputs :
+
+### 303.3,0.03,6.1,0.3,30.3,7.6

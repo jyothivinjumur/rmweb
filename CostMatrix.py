@@ -13,7 +13,7 @@ class cm:
         #self.costMatrix[1][0] = 6.1  # this is the cost value for lamda(LP) classifier decision in USD
         #self.costMatrix[1][1] = 0    # this is the cost value for lamda(LL) classifier decision in USD
         #self.costMatrix[1][2] = 0.3  # this is the cost value for lamda(LW) classifier decision in USD
-        #self.costMatrix[2][0] = 121.2  # this is the cost value for lamda(WP) classifier decision in USD
+        #self.costMatrix[2][0] = 30.3  # this is the cost value for lamda(WP) classifier decision in USD
         #self.costMatrix[2][1] = 7.6  # this is the cost value for lamda(WL) classifier decision in USD
         #self.costMatrix[2][2] = 0    # this is the cost value for lamda(WW) classifier decision in USD
 

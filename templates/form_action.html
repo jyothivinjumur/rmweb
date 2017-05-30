@@ -1,28 +1,20 @@
  <html>
     <head>
-        <title>Handle POST requests with Flask</title>
+        <title>rmapp-result</title>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
         <div id="container">
             <div class="title">
-                <h1>POST request with Flask</h1>
+                <h1>Review Condition Results for the given Cost Matrix </h1>
             </div>
             <div id="content">
-                Tau R value =  <strong>{{name}}</strong>
+                Number of Documents to be reviewed for Relevance =  <strong>{{name}}</strong>
                 <br>
-                Tau P value =  <strong>{{email}}</strong>
-            </div>
-            <!--<div class="title">-->
-                <!--<h1>Flask code</h1>-->
-            <!--</div>-->
-                <!--<code><pre>-->
-<!--@app.route('/hello/', methods=['POST'])-->
-<!--def hello():-->
-    <!--name=request.form['yourname']-->
-    <!--email=request.form['youremail']-->
-    <!--return render_template('form_action.html', name=name, email=email)-->
-                <!--</pre></code>-->
+                Number of Documents to be reviewed for Privilege =  <strong>{{Tau_p}}</strong>
+                <br> <br>
+                <strong> Review Condition =  {{message}}</strong>
+               
             </div>
         </div>
     </body>

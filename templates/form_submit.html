@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Handle POST requests with Flask</title>
+        <title>rmapp-inputs</title>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
@@ -11,20 +11,11 @@
             <div id="content">
                 <form method="post" action="{{ url_for('hybridmodel') }}">
                   <label for="yourname">Enter values for - lamPL,lamPW,lamLP,lamLW,lamWP,lamWL</label>
-                  <input type="text" name="yourname" /><br />
+                  <input type="text" name="yourname" value="9.1,0.03,6.1,0.3,30.3,7.6" /><br />
                   <label for="youremail">Enter alpha value</label>
-                  <input type="text" name="youremail" /><br />
+                  <input type="text" name="youremail" value="5.0" /><br />
                   <input type="submit" />
                 </form>
-            </div>
-            <!--<div class="title">-->
-                <!--<h1>Flask code</h1>-->
-            <!--</div>-->
-                <!--<code><pre>-->
-<!--@app.route('/')-->
-<!--def form():-->
-    <!--return render_template('form_submit.html')-->
-                <!--</pre></code>-->
             </div>
         </div>
     </body>

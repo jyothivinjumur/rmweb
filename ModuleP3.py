@@ -5,6 +5,9 @@ from ModuleP1 import phase1
 from CostMatrix import cm
 
 class phase3:
+    def __init__(self):
+        self.costMatrix=[[0 for x in range(3)] for x in range(3)]
+
     def get_PrcP4d(self, Prcr4d,Prcp4d):
         v1=Prcr4d*(1.0-Prcp4d)
         v2=1.0*(1.0-Prcp4d) # if Prcr4d==1.0
@@ -53,6 +56,7 @@ class phase3:
 
     def computeExpectation(self,wd,totalTestInstances,cmvalue,lamP,pCpD_Filepath):
         """ EQUATION 16 """
+        self.costMatrix=cmvalue
         respInsDPL=cPickle.load(open(wd+'/rAnnotated-ds-op-label.tuple.dictionary.p2.'+str(totalTestInstances)+'.p','rb'))
         privInsDPL=cPickle.load(open(pCpD_Filepath,'rb'))
         docIDS=respInsDPL.keys()
@@ -155,6 +159,5 @@ class phase3:
         Based on Equation 8 --> re-use code in ModuleP1
         """
         p1=phase1()
-        costMatrix=cm()
-        cmvalue=costMatrix.getCostMatrix()
+        cmvalue=self.costMatrix
         p1.classifyDocuments(wd,pCrD_Filepath, pCpD_Filepath,totalTestInstances,cmvalue,reclassify="Phase3",updatedDict=updtPrb_cp,BT=BType)

@@ -7,8 +7,7 @@ from CostMatrix import cm
 
 class phase2:
     def __init__(self):
-        """
-        """
+        self.costMatrix=[[0 for x in range(3)] for x in range(3)]
 
     def get_PrcP4d(self, Prcr4d,Prcp4d):
         v1=Prcr4d*(1.0-Prcp4d)
@@ -58,6 +57,7 @@ class phase2:
 
     def computeExpectation(self,wd,totalTestInstances,cmvalue,lamR,pCrD_Filepath,pCpD_Filepath):
         """ EQUATION 11 """
+        self.costMatrix=cmvalue
         respInsDPL=cPickle.load(open(pCrD_Filepath,'rb'))
         privInsDPL=cPickle.load(open(pCpD_Filepath,'rb'))
         docIDS=respInsDPL.keys()
@@ -92,6 +92,7 @@ class phase2:
         cPickle.dump(docids2Annotate,open(wd+'/docs_to_annotate_p2.list.'+str(totalTestInstances)+'.p', 'wb'))
 
     def runphase2(self,pCrD_Filepath,pCpD_Filepath,rJFile,wd,totalTestInstances,Tau_rValue,BaselineType=None):
+        tau_r=0
         if BaselineType=='RR':
             docs2annotate=cPickle.load(open(wd+'/docs4map2RRBaseline.list.'+str(totalTestInstances)+'.p','rb'))
             rJ={}
@@ -164,10 +165,8 @@ class phase2:
         Based on Equation 8 --> re-use code in ModuleP1
         """
         p1=phase1()
-        costMatrix=cm()
-        cmv=costMatrix.getCostMatrix()
-        print "reclassify p2 cmv = ",cmv
-        p1.classifyDocuments(wd,pCrD_Filepath, pCpD_Filepath,totalTestInstances,costMatrix.getCostMatrix(),reclassify="Phase2",updatedDict=updtPrb_cr,BT=BType)
+        cmv=self.costMatrix
+        p1.classifyDocuments(wd,pCrD_Filepath, pCpD_Filepath,totalTestInstances,cmv,reclassify="Phase2",updatedDict=updtPrb_cr,BT=BType)
 
 
 
