@@ -2,20 +2,118 @@
     <head>
         <title>rmapp-inputs</title>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+        <style>
+        table, td, th {    
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+        th {
+            background-color: #424242;
+            color: white;
+        }
+        tr:nth-child(even){background-color: #f2f2f2}
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+        input[type=submit]{
+            background: #198ad1;
+            color: #fff;
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 24px;
+            line-height: 2.6em;
+            font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+            font-weight: 400;
+            -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
+            -moz-box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.1);
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            text-transform: capitalize;
+            border: 0;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
     </head>
+
     <body>
         <div id="container">
             <div class="title">
-                <h1>Risk Minimization Mis-classification Cost Values</h1>
+                <h1>Risk Minimization Model Inputs</h1>
             </div>
             <div id="content">
+            <p>
+            <h3>
+            PRODUCE class -  Documents that are responsive and not-privileged. <br>
+            LOG class - Documents that are responsive and privileged. <br>
+            WITHHOLD class - Documents that are not responsive.
+            <br> <hr><br> 
+            Please Enter the Cost Values (all values in USD) <br> <br> 
                 <form method="post" action="{{ url_for('hybridmodel') }}">
-                  <label for="yourname">Enter values for - lamPL,lamPW,lamLP,lamLW,lamWP,lamWL</label>
-                  <input type="text" name="yourname" value="9.1,0.03,6.1,0.3,30.3,7.6" /><br />
-                  <label for="youremail">Enter alpha value</label>
-                  <input type="text" name="youremail" value="5.0" /><br />
-                  <input type="submit" />
+                    <label for="lamdaR">Enter the cost (in USD) of manually reviewing a single document for Responsiveness</label> 
+                    <input type="text" name="lamR" value="1.0" /><br />
+                    <label for="lamdaP">Enter the cost (in USD) of manually reviewing a single document for Privilege</label>
+                    <input type="text" name="lamP" value="5.0" /><br /> <br>
+                    </h3>
+                    <table>
+                    <center>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th align="center" valign="middle" colspan="3">TRUTH</th>
+                        </tr>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th align="center" valign="middle" scope="col">PRODUCE</th>
+                            <th align="center" valign="middle" scope="col">LOG</th>
+                            <th align="center" valign="middle" scope="col">WITHHOLD</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">PREDICTIONS</th>
+                            <th align="center" valign="middle" scope="row">PRODUCE</th>
+                            <td align="center" valign="middle"><label for="lamPP">0</label></td>
+                            <td align="center" valign="middle"><input type="text" name="lamPL" value="9.1"/></td>
+                            <td align="center" valign="middle"><input type="text" name="lamPW" value="0.03"/></td>                                     
+                        </tr>
+                        <tr>
+                            <th align="center" valign="middle" scope="row">LOG</th>
+                            <td align="center" valign="middle"><input type="text" name="lamLP" value="6.1"/></td>
+                            <td align="center" valign="middle"><label for="lamLL">0</label></td>
+                            <td align="center" valign="middle"><input type="text" name="lamLW" value="0.3"/></td>                                     
+                        </tr>
+                        <tr>
+                            <th align="center" valign="middle" scope="row">WITHHOLD</th>
+                            <td align="center" valign="middle"><input type="text" name="lamWP" value="30.3"/></td>
+                            <td align="center" valign="middle"><input type="text" name="lamWL" value="7.6"/></td>
+                            <td align="center" valign="middle"><label for="lamWW">0</label></td>                        
+                        </tr>
+                        </center>
+                    </table>
+                  
+                  <br><br>
+                  <hr>
+                  <input align="right" type="submit" />
                 </form>
+                <p> For more information contact <a href="https://www.linkedin.com/in/jyothi-k-vinjumur-24b65b6">Jyothi Vinjumur</a> (jyothikv[at]umd[dot]edu).
             </div>
         </div>
     </body>

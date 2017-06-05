@@ -29,6 +29,9 @@ RUN set -ex; \
 # Copy the current directory contents into the container at /app
 ADD . /app
 
+# Create a log dir
+RUN mkdir -p /app/logs
+
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
@@ -41,3 +44,5 @@ EXPOSE 80
 
 # Run app.py when the container launches
 CMD ["python", "app.py"]
+# CMD ["bash"]
+

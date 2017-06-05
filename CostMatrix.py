@@ -7,15 +7,6 @@ class cm:
         self.lam_r=1.0 # this is the cost value for Lambda_r = $5 per document
         self.lam_p=5.0 # this is the cost value for Lambda_p = $10 per document
         self.costMatrix=[[0 for x in range(3)] for x in range(3)]
-        #self.costMatrix[0][0] = 0   # this is the cost value for lamda(PP) classifier decision in USD
-        #self.costMatrix[0][1] = 9.1  # this is the cost value for lamda(PL) classifier decision in USD
-        #self.costMatrix[0][2] = 0.03  # this is the cost value for lamda(PW) classifier decision in USD
-        #self.costMatrix[1][0] = 6.1  # this is the cost value for lamda(LP) classifier decision in USD
-        #self.costMatrix[1][1] = 0    # this is the cost value for lamda(LL) classifier decision in USD
-        #self.costMatrix[1][2] = 0.3  # this is the cost value for lamda(LW) classifier decision in USD
-        #self.costMatrix[2][0] = 30.3  # this is the cost value for lamda(WP) classifier decision in USD
-        #self.costMatrix[2][1] = 7.6  # this is the cost value for lamda(WL) classifier decision in USD
-        #self.costMatrix[2][2] = 0    # this is the cost value for lamda(WW) classifier decision in USD
 
     def setCostMatrix(self,cm01,cm02,cm10,cm12,cm20,cm21):
         self.costMatrix[0][0] = 0   # this is the cost value for lamda(PP) user input

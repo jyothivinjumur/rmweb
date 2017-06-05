@@ -22,17 +22,13 @@ sampleapp           latest              9fbc5885b171        2 minutes ago       
 python              2.7-slim            1c7128a655f6        13 days ago         183 MB
 ```
 
-### Run the docker image
+### Run the docker image (locally)
 
 ```
 docker run -p 4000:80 sampleapp
 ```
 Navigate to http://127.0.0.1:4000/ to see the app.
 
-To run the docker image as a deamon.
-```
-sudo docker run -p 80:80 -d sampleapp
-```
 
 ### Log into the VM
 
@@ -47,6 +43,21 @@ Copy the `CONTAINER ID` which is `be17d4cff42c` in the above example and submit 
 ```
 docker exec -it be17d4cff42c bash
 ``` 
+
+### Deploy docker image (on a remote machine)
+
+* Log into the remote box.
+* Check if the `simpleapp` container is running
+```
+docker ps | grep simplaapp
+```
+* If its running kill it using `docker kill <CONTAINER ID>`
+* `git clone` this app or `git pull` to pull down the latest update
+* To run the docker image as a deamon.
+```
+sudo docker run -p 80:80 -d -v /data/logs:/app/logs sampleapp
+```
+
 
 ### Cleanup
 

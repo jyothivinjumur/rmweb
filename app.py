@@ -8,6 +8,8 @@ from ModuleP3 import phase3
 import sys
 from CostMatrix import cm
 import logging
+from logging.handlers import RotatingFileHandler
+
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -17,12 +19,10 @@ app = Flask(__name__)
 def form():
     return render_template('form_submit.html')
 
-def p1caller(costs,alpha):
+def p1caller(pl,pw,lp,lw,wp,wl,alpha):
     try:
-        
         costMatrix=cm()
-        cmv=costs.split(',')
-        costMatrix.setCostMatrix(float(cmv[0]),float(cmv[1]),float(cmv[2]),float(cmv[3]),float(cmv[4]),float(cmv[5]))
+        costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
         p1=phase1()
@@ -31,14 +31,13 @@ def p1caller(costs,alpha):
     except:
         raise
 
-def p2caller(costs,alpha):
+def p2caller(pl,pw,lp,lw,wp,wl,alpha,lambda_R):
     try:
         costMatrix=cm()
-        cmv=costs.split(',')
-        costMatrix.setCostMatrix(float(cmv[0]),float(cmv[1]),float(cmv[2]),float(cmv[3]),float(cmv[4]),float(cmv[5]))
+        costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
-        lamR=costMatrix.getLam_r()
+        lamR=lambda_R
         p2=phase2()
         twd='/app/data'
         p2.computeExpectation(twd,20000,cmvalue,lamR,twd+'/GPOL-ds-op-label.tuple.dictionary.20000.p',twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p')
@@ -47,14 +46,13 @@ def p2caller(costs,alpha):
     except:
         raise
 
-def p3caller(costs,alpha):
+def p3caller(pl,pw,lp,lw,wp,wl,alpha,lambda_P):
     try:
         costMatrix=cm()
-        cmv=costs.split(',')
-        costMatrix.setCostMatrix(float(cmv[0]),float(cmv[1]),float(cmv[2]),float(cmv[3]),float(cmv[4]),float(cmv[5]))
+        costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
-        lamP=costMatrix.getLam_p()
+        lamP=lambda_P
         twd='/app/data'
         p3=phase3()
         p3.computeExpectation(twd,20000,cmvalue,lamP,twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p')
@@ -65,11 +63,32 @@ def p3caller(costs,alpha):
 
 @app.route('/hybridmodel/', methods=['POST'])
 def hybridmodel():
-    costs=request.form['yourname']
-    alpha=request.form['youremail']
-    p1caller(costs,alpha)
-    Tau_r=p2caller(costs,alpha)
-    Tau_p=p3caller(costs,alpha)
+    pl=request.form['lamPL']
+    pw=request.form['lamPW']
+    lp=request.form['lamLP']
+    lw=request.form['lamLW']
+    wp=request.form['lamWP']
+    wl=request.form['lamWL']
+    lambda_R=request.form['lamR']
+    lambda_P=request.form['lamP']    
+    app.logger.info("User Inputs; ")
+    app.logger.info("pl= %s",pl)
+    app.logger.info("pw= %s",pw)
+    app.logger.info("lp= %s",lp)
+    app.logger.info("lw= %s",lw)
+    app.logger.info("wp= %s",wp)
+    app.logger.info("wl= %s",wl)
+    app.logger.info("Lambda_P= %s",lambda_P)
+    app.logger.info("Lambda_R= %s",lambda_R)
+    alpha="1.0"
+    p1caller(pl,pw,lp,lw,wp,wl,alpha)
+    Tau_r=p2caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_R))
+    Tau_p=p3caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_P))
+    Tau_r_percent=float(Tau_r/20000)*100
+    if Tau_r>0:
+        Tau_p_percent=float(Tau_p/Tau_r)*100
+    else:
+        Tau_p_percent=0
     msg="NONE"
     if Tau_r>0 and Tau_r<20000:
         msg="Review Something"
@@ -77,7 +96,15 @@ def hybridmodel():
         msg="Review Nothing"
     else:
         msg="Review Everything"
-    return render_template('form_action.html', name=Tau_r, Tau_p=Tau_p, message=msg)
+    return render_template('form_action.html', Tau_rpercent=Tau_r_percent, Tau_ppercent=Tau_p_percent, message=msg)
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=80)
+    handler = RotatingFileHandler('/app/logs/logfile.log', maxBytes=10000, backupCount=10)
+    FORMAT = "%(asctime)-15s %(message)s"
+    fmt = logging.Formatter(FORMAT,datefmt='%Y-%m-%d %H:%M:%S')
+    FORMAT = "%(asctime)-15s %(message)s"
+    handler.setFormatter(fmt)
+    handler.setLevel(logging.INFO)
+    app.logger.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
+    app.run(host='0.0.0.0', port=80)
