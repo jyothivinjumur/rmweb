@@ -1,5 +1,20 @@
 # Readme
 
+
+## Deployment
+
+- Commit changes to git
+
+(git add, git commit -m "" , git push)
+
+- Login to google server
+
+git pull
+
+ 
+
+
+
 ## Reference links
 
 * https://docs.docker.com/get-started/part2/#build-the-app

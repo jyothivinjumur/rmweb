@@ -52,7 +52,7 @@ def p3caller(pl,pw,lp,lw,wp,wl,alpha,lambda_P):
         costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
-        lamP=lambda_P
+        lamP=float(lambda_P)
         twd='/app/data'
         p3=phase3()
         p3.computeExpectation(twd,20000,cmvalue,lamP,twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p')
@@ -96,7 +96,7 @@ def hybridmodel():
         msg="Review Nothing"
     else:
         msg="Review Everything"
-    return render_template('form_action.html', Tau_rpercent=Tau_r_percent, Tau_ppercent=Tau_p_percent, message=msg)
+    return render_template('form_action.html', Tau_rpercent=Tau_r, Tau_ppercent=Tau_p, message=msg)
 
 if __name__ == '__main__':
     handler = RotatingFileHandler('/app/logs/logfile.log', maxBytes=10000, backupCount=10)

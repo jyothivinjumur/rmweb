@@ -12,13 +12,20 @@
 
             <div id="content">
             <h3>
-                Result Statistics:<br> <br>
-                Total number of Documents in the Collection: 20,000 <br>
+            <p> To support our model, we utilize the hirarchical Reuters Business Briefing (RBB) test collection categories. We use documents that belong to the ECONOMICS (ECAT) category as Privileged class and documents that belong to DOMESTIC POLITICS (GPOL) as Responsive class. We plan to use other categories in our future experiments.
+            <br>
+            <br>
 
+            Result Statistics:<br> <br>
+            Total number of Documents in the Test-Set: 20,000 <br>
+            Prevalence of ECONOMICS (ECAT) category: 7.44%<br>
+            Prevalence of DOMESTIC POLITICS (GPOL) category: 15.27%<br>
+            Intersection of GPOL and ECAT category: 1.45% <br><br>
+            </p>
                 <hr>
-                Number of Documents to be reviewed for Relevance =  <strong>{{Tau_rpercent}}</strong> percent
+                Number of Documents to be reviewed for Responsiveness =  <strong>{{Tau_rpercent}}</strong> off 20,000
                 <br><br>
-                Number of Documents to be reviewed for Privilege =  <strong>{{Tau_ppercent}}</strong> percent
+                Number of Documents to be reviewed for Privilege =  <strong>{{Tau_ppercent}}</strong> off <strong>{{Tau_rpercent}}</strong>
                 <br> <br>
                 <strong> Review Condition =  {{message}}</strong>
             <h3>
