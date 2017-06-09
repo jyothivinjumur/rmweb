@@ -11,24 +11,25 @@
             <br>
 
             <div id="content">
-            <h3>
-            <p> To support our model, we utilize the hirarchical Reuters Business Briefing (RBB) test collection categories. We use documents that belong to the ECONOMICS (ECAT) category as Privileged class and documents that belong to DOMESTIC POLITICS (GPOL) as Responsive class. We plan to use other categories in our future experiments.
-            <br>
-            <br>
-
-            Result Statistics:<br> <br>
+            <h2>
+            
+            Collection Statistics: <br> <br>
+            Data: RCV1-v2 Test Collection <br>
+            Responsive class: Documents in DOMESTIC POLITICS (GPOL) category <br>
+            Privilege class: Documents in ECONOMICS (ECAT) category <br>
             Total number of Documents in the Test-Set: 20,000 <br>
-            Prevalence of ECONOMICS (ECAT) category: 7.44%<br>
-            Prevalence of DOMESTIC POLITICS (GPOL) category: 15.27%<br>
-            Intersection of GPOL and ECAT category: 1.45% <br><br>
-            </p>
-                <hr>
-                Number of Documents to be reviewed for Responsiveness =  <strong>{{Tau_rpercent}}</strong> off 20,000
-                <br><br>
-                Number of Documents to be reviewed for Privilege =  <strong>{{Tau_ppercent}}</strong> off <strong>{{Tau_rpercent}}</strong>
-                <br> <br>
-                <strong> Review Condition =  {{message}}</strong>
-            <h3>
+            Responsive class Prevalence: 15.27%<br>
+            Privilege class Prevalence: 7.44%<br>
+            Prevalence of the Intersection among Responsive and Privilege classes: 1.45% <br><br>
+            <hr><br>
+            
+            Manual Review Statistics: <br> <br>
+            Number of Documents to be reviewed for Responsiveness =  <strong>{{Taur}}</strong> of 20,000 ({{Tau_rpercent}}%)
+            <br>
+            Number of Documents to be reviewed for Privilege =  <strong>{{Taup}}</strong> ({{Tau_ppercent}}% of 20,000)
+            <br> <br>
+            <!-- <strong> Review Condition =  {{message}}</strong> -->
+            <h2>
                
             </div>
         </div>

@@ -63,6 +63,7 @@ def p3caller(pl,pw,lp,lw,wp,wl,alpha,lambda_P):
 
 @app.route('/hybridmodel/', methods=['POST'])
 def hybridmodel():
+    username=request.form['uname']
     pl=request.form['lamPL']
     pw=request.form['lamPW']
     lp=request.form['lamLP']
@@ -71,7 +72,7 @@ def hybridmodel():
     wl=request.form['lamWL']
     lambda_R=request.form['lamR']
     lambda_P=request.form['lamP']    
-    app.logger.info("User Inputs; ")
+    app.logger.info("User Inputs; Username is %s",username)
     app.logger.info("pl= %s",pl)
     app.logger.info("pw= %s",pw)
     app.logger.info("lp= %s",lp)
@@ -85,10 +86,7 @@ def hybridmodel():
     Tau_r=p2caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_R))
     Tau_p=p3caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_P))
     Tau_r_percent=float(Tau_r/20000)*100
-    if Tau_r>0:
-        Tau_p_percent=float(Tau_p/Tau_r)*100
-    else:
-        Tau_p_percent=0
+    Tau_p_percent=float(Tau_p/20000)*100
     msg="NONE"
     if Tau_r>0 and Tau_r<20000:
         msg="Review Something"
@@ -96,7 +94,7 @@ def hybridmodel():
         msg="Review Nothing"
     else:
         msg="Review Everything"
-    return render_template('form_action.html', Tau_rpercent=Tau_r, Tau_ppercent=Tau_p, message=msg)
+    return render_template('form_action.html', Taur=Tau_r, Tau_rpercent=Tau_r_percent, Taup=Tau_p, Tau_ppercent=Tau_p_percent, message=msg)
 
 if __name__ == '__main__':
     handler = RotatingFileHandler('/app/logs/logfile.log', maxBytes=10000, backupCount=10)

@@ -3,9 +3,10 @@
         <title>rmapp-inputs</title>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
         <style>
+
         table, td, th {    
             border: 1px solid #ddd;
-            text-align: left;
+            text-align: center;
         }
 
         table {
@@ -36,7 +37,7 @@
             color: #fff;
             display: inline-block;
             padding: 0 20px;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 2.6em;
             font-family: "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
             font-weight: 400;
@@ -60,25 +61,26 @@
                 <h1>Risk Minimization Model Inputs</h1>
             </div>
             <div id="content">
-            <p>
             <h3>
             PRODUCE class -  Documents that are responsive and not-privileged. <br>
             LOG class - Documents that are responsive and privileged. <br>
-            WITHHOLD class - Documents that are not responsive.
-            <br> <hr><br> 
-            Please Enter the Cost Values (all values in USD) <br> <br> 
+            WITHHOLD class - Documents that are not responsive.<br> 
+            <hr> 
                 <form method="post" action="{{ url_for('hybridmodel') }}">
+                    <label >Enter your name (optional)</label>
+                    <input type="text" name="uname" value="" /><br />
                     <label for="lamdaR">Enter the cost (in USD) of manually reviewing a single document for Responsiveness</label> 
                     <input type="text" name="lamR" value="1.0" /><br />
                     <label for="lamdaP">Enter the cost (in USD) of manually reviewing a single document for Privilege</label>
-                    <input type="text" name="lamP" value="5.0" /><br /> <br>
+                    <input type="text" name="lamP" value="5.0" /><br />
+                    Please enter the 6 Misclassification Cost Values in the below grid (all values in USD) <br>
                     </h3>
                     <table>
                     <center>
                         <tr>
                             <th></th>
                             <th></th>
-                            <th align="center" valign="middle" colspan="3">TRUTH</th>
+                            <th align="center" colspan="3">TRUTH</th>
                         </tr>
                         <tr>
                             <th scope="col"></th>
@@ -108,9 +110,7 @@
                         </tr>
                         </center>
                     </table>
-                  
-                  <br><br>
-                  <hr>
+                    <br>
                   <input align="right" type="submit" />
                 </form>
                 <p> For more information contact <a href="https://www.linkedin.com/in/jyothi-k-vinjumur-24b65b6">Jyothi Vinjumur</a> (jyothikv[at]umd[dot]edu).
