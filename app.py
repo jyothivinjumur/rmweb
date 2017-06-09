@@ -85,8 +85,8 @@ def hybridmodel():
     p1caller(pl,pw,lp,lw,wp,wl,alpha)
     Tau_r=p2caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_R))
     Tau_p=p3caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_P))
-    Tau_r_percent=float(Tau_r/20000)*100
-    Tau_p_percent=float(Tau_p/20000)*100
+    Tau_r_percent=float(Tau_r)/20000*100.0
+    Tau_p_percent=float(Tau_p)/20000*100.0
     msg="NONE"
     if Tau_r>0 and Tau_r<20000:
         msg="Review Something"
