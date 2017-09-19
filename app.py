@@ -27,7 +27,7 @@ def p1caller(pl,pw,lp,lw,wp,wl,alpha):
         cmvalue=costMatrix.getCostMatrix()
         p1=phase1()
         twd='/app/data'
-        p1.classifyDocuments(twd,twd+'/GPOL-ds-op-label.tuple.dictionary.20000.p',twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p',20000,cmvalue,reclassify=False)
+        p1.classifyDocuments(twd,twd+'/GPOL-ds-op-label.tuple.dictionary.199328.p',twd+'/ECAT-ds-op-label.tuple.dictionary.199328.p',199328,cmvalue,reclassify=False)
     except:
         raise
 
@@ -37,11 +37,12 @@ def p2caller(pl,pw,lp,lw,wp,wl,alpha,lambda_R):
         costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
+        costMatrix.setLam_r(float(lambda_R))
         lamR=lambda_R
         p2=phase2()
         twd='/app/data'
-        p2.computeExpectation(twd,20000,cmvalue,lamR,twd+'/GPOL-ds-op-label.tuple.dictionary.20000.p',twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p')
-        Tau_rValue=p2.runphase2(twd+'/GPOL-ds-op-label.tuple.dictionary.20000.p',twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p',twd+'/rcv1_GPOL.txt',twd,20000,0)
+        p2.computeExpectation(twd,199328,cmvalue,lamR,twd+'/GPOL-ds-op-label.tuple.dictionary.199328.p',twd+'/ECAT-ds-op-label.tuple.dictionary.199328.p')
+        Tau_rValue=p2.runphase2(twd+'/GPOL-ds-op-label.tuple.dictionary.199328.p',twd+'/ECAT-ds-op-label.tuple.dictionary.199328.p',twd+'/rcv1_GPOL.txt',twd,199328,0)
         return Tau_rValue
     except:
         raise
@@ -52,11 +53,12 @@ def p3caller(pl,pw,lp,lw,wp,wl,alpha,lambda_P):
         costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
+        costMatrix.setLam_p(float(lambda_P))
         lamP=float(lambda_P)
         twd='/app/data'
         p3=phase3()
-        p3.computeExpectation(twd,20000,cmvalue,lamP,twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p')
-        Tau_pValue=p3.runphase3(twd+'/ECAT-ds-op-label.tuple.dictionary.20000.p',twd+'/rcv1_ECAT.txt',twd,20000,0)
+        p3.computeExpectation(twd,199328,cmvalue,lamP,twd+'/ECAT-ds-op-label.tuple.dictionary.199328.p')
+        Tau_pValue=p3.runphase3(twd+'/ECAT-ds-op-label.tuple.dictionary.199328.p',twd+'/rcv1_ECAT.txt',twd,199328,0)
         return Tau_pValue
     except:
         raise
@@ -85,10 +87,10 @@ def hybridmodel():
     p1caller(pl,pw,lp,lw,wp,wl,alpha)
     Tau_r=p2caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_R))
     Tau_p=p3caller(pl,pw,lp,lw,wp,wl,alpha,float(lambda_P))
-    Tau_r_percent=float(Tau_r)/20000*100.0
-    Tau_p_percent=float(Tau_p)/20000*100.0
+    Tau_r_percent=float(Tau_r)/199328*100.0
+    Tau_p_percent=float(Tau_p)/199328*100.0
     msg="NONE"
-    if Tau_r>0 and Tau_r<20000:
+    if Tau_r>0 and Tau_r<199328:
         msg="Review Something"
     elif Tau_r==0:
         msg="Review Nothing"

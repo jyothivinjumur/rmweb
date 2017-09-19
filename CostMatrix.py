@@ -19,6 +19,12 @@ class cm:
         self.costMatrix[2][1] = cm21  # this is the cost value for lamda(WL) user input
         self.costMatrix[2][2] = 0 # this is the cost value for lamda(WW) user input
 
+    def setLam_R(self,value):
+        self.lam_r=value
+
+    def setLam_P(self,value):
+        self.lam_p=value
+
     def setCondition(self, has502enabled):
         if has502enabled=='true':
             self.costMatrix[0][1]=9.1

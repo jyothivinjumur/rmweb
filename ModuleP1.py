@@ -97,28 +97,10 @@ class phase1:
             cPickle.dump(pdP,open(workDir+"/docid-cP-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
             cPickle.dump(pdL,open(workDir+"/docid-cL-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
             cPickle.dump(pdW,open(workDir+"/docid-cW-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
-        elif reclassify=="Phase2" and BT=="RR":
-            cPickle.dump(respInsDPL,open(workDir+'/RR-rAnnotated-ds-op-label.tuple.dictionary.p2.'+str(totalTestInstances)+'.p', "wb"))
-            cPickle.dump(pdP,open(workDir+"/RR-docid-cP-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdL,open(workDir+"/RR-docid-cL-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdW,open(workDir+"/RR-docid-cW-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
-        elif reclassify=="Phase2" and BT=="UR":
-            cPickle.dump(respInsDPL,open(workDir+'/UR-rAnnotated-ds-op-label.tuple.dictionary.p2.'+str(totalTestInstances)+'.p', "wb"))
-            cPickle.dump(pdP,open(workDir+"/UR-docid-cP-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdL,open(workDir+"/UR-docid-cL-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdW,open(workDir+"/UR-docid-cW-probValue.dictionary.p2."+str(totalTestInstances)+".p", "wb"))
         elif reclassify=="Phase3" and BT==None:
             cPickle.dump(pdP,open(workDir+"/docid-cP-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
             cPickle.dump(pdL,open(workDir+"/docid-cL-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
             cPickle.dump(pdW,open(workDir+"/docid-cW-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
-        elif reclassify=="Phase3" and BT=='RR':
-            cPickle.dump(pdP,open(workDir+"/RR-docid-cP-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdL,open(workDir+"/RR-docid-cL-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdW,open(workDir+"/RR-docid-cW-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
-        elif reclassify=="Phase3" and BT=='UR':
-            cPickle.dump(pdP,open(workDir+"/UR-docid-cP-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdL,open(workDir+"/UR-docid-cL-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
-            cPickle.dump(pdW,open(workDir+"/UR-docid-cW-probValue.dictionary.p3."+str(totalTestInstances)+".p", "wb"))
         else:
             cPickle.dump(pdP,open(workDir+"/docid-cP-probValue.dictionary."+str(totalTestInstances)+".p", "wb"))
             cPickle.dump(pdL,open(workDir+"/docid-cL-probValue.dictionary."+str(totalTestInstances)+".p", "wb"))
