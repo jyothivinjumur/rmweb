@@ -19,8 +19,8 @@ RUN set -ex; \
 	\
 	mkdir /app/data;\
 	\
-	wget -O /app/data/ECAT-ds-op-label.tuple.dictionary.20000.p https://storage.googleapis.com/umd-may-jk/data-files/datafiles/ECAT-ds-op-label.tuple.dictionary.20000.p && \
-	wget -O /app/data/GPOL-ds-op-label.tuple.dictionary.20000.p https://storage.googleapis.com/umd-may-jk/data-files/datafiles/GPOL-ds-op-label.tuple.dictionary.20000.p && \
+	wget -O /app/data/ECAT-ds-op-label.tuple.dictionary.199328.p https://storage.googleapis.com/umd-may-jk/data-files/datafiles/ECAT-ds-op-label.tuple.dictionary.199328.p && \
+	wget -O /app/data/GPOL-ds-op-label.tuple.dictionary.199328.p https://storage.googleapis.com/umd-may-jk/data-files/datafiles/GPOL-ds-op-label.tuple.dictionary.199328.p && \
 	wget -O /app/data/rcv1_ECAT.txt https://storage.googleapis.com/umd-may-jk/data-files/datafiles/rcv1_ECAT.txt && \
 	wget -O /app/data/rcv1_GPOL.txt https://storage.googleapis.com/umd-may-jk/data-files/datafiles/rcv1_GPOL.txt && \
 	apt-get purge -y --auto-remove wget; 
