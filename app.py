@@ -37,7 +37,7 @@ def p2caller(pl,pw,lp,lw,wp,wl,alpha,lambda_R):
         costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
-        costMatrix.setLam_r(float(lambda_R))
+        costMatrix.setLam_R(float(lambda_R))
         lamR=lambda_R
         p2=phase2()
         twd='/app/data'
@@ -53,7 +53,7 @@ def p3caller(pl,pw,lp,lw,wp,wl,alpha,lambda_P):
         costMatrix.setCostMatrix(float(pl),float(pw),float(lp),float(lw),float(wp),float(wl))
         costMatrix.setAlpha(float(alpha.strip()))
         cmvalue=costMatrix.getCostMatrix()
-        costMatrix.setLam_p(float(lambda_P))
+        costMatrix.setLam_P(float(lambda_P))
         lamP=float(lambda_P)
         twd='/app/data'
         p3=phase3()
